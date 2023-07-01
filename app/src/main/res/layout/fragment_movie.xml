@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bg_layout"
+    android:padding="16dp"
+    tools:context=".view.MovieFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/primary"
+        app:cardCornerRadius="16dp">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_movies"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="-30dp"
+            android:layout_marginStart="-12dp"
+            android:alpha="0.2"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/greeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Welcome, User"
+                android:fontFamily="@font/product_sans_bold"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:padding="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/your_balance"
+                android:fontFamily="@font/product_sans_regular"
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp.20.000"
+                android:drawablePadding="4dp"
+                android:fontFamily="@font/product_sans_bold"
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20sp"
+                app:drawableStartCompat="@drawable/ic_balance_wallet" />
+
+            <TextView
+                android:id="@+id/topup_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Top up balance"
+                android:layout_gravity="end"
+                android:fontFamily="@font/product_sans_regular"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:padding="16dp"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <EditText
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/search"
+        android:background="@drawable/textfield_shape"
+        android:padding="16dp"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="4dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/text_hint"
+        android:textSize="16sp"
+        android:fontFamily="@font/product_sans_regular"
+        android:layout_below="@id/cv_info"
+        android:layout_marginTop="24dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_movie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        tools:listitem="@layout/item_movies"
+        android:layout_below="@id/search_bar"/>
+
+    <ProgressBar
+        android:id="@+id/pb_movie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:progressTint="@color/primary"
+        android:visibility="visible"
+        android:layout_centerInParent="true"/>
+
+</RelativeLayout>

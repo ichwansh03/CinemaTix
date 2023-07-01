@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/bg_layout"
+    android:padding="8dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/material_cv"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialCardView.Cut">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_movie"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:src="@drawable/cinema"
+                android:background="@color/bg_layout"
+                android:scaleType="centerCrop"/>
+
+            <TextView
+                android:id="@+id/age_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:text="14+"
+                android:background="@drawable/rating_shape"
+                android:padding="4dp"
+                android:fontFamily="@font/product_sans_bold"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:layout_marginTop="-4dp"
+                android:layout_marginEnd="-4dp"
+                app:drawableStartCompat="@drawable/ic_arrow_up" />
+
+            <TextView
+                android:id="@+id/title_movie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/img_movie"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/product_sans_regular"
+                android:text="@string/i_already_have_account_login"
+                android:textColor="@color/bg_layout"
+                android:textSize="17sp" />
+
+            <TextView
+                android:id="@+id/price_movie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title_movie"
+                android:text="Rp.30.000"
+                android:layout_alignParentEnd="true"
+                android:drawablePadding="4dp"
+                android:textSize="17sp"
+                android:textColor="@color/bg_layout"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/product_sans_bold"
+                app:drawableStartCompat="@drawable/ic_price" />
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</RelativeLayout>

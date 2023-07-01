@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_layout"
+    android:padding="16dp"
+    tools:context=".service.AddBalanceActivity">
+
+    <EditText
+        android:id="@+id/et_balance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/input_amount"
+        android:background="@drawable/textfield_shape"
+        android:padding="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/text_hint"
+        android:textSize="16sp"
+        android:inputType="numberDecimal"
+        android:fontFamily="@font/product_sans_regular"
+        android:layout_marginTop="24dp"/>
+
+</RelativeLayout>

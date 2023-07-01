@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_layout"
+    tools:context=".view.DetailMovieActivity">
+
+    <ImageView
+        android:id="@+id/poster_movie_detail"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:src="@drawable/cinema"
+        android:scaleType="centerCrop"
+        android:alpha="0.8"/>
+
+    <TextView
+        android:id="@+id/title_movie_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="@string/i_already_have_account_login"
+        android:textSize="20sp"
+        android:layout_below="@id/poster_movie_detail"
+        android:layout_margin="16dp"
+        android:fontFamily="@font/product_sans_bold"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title_movie_detail"
+        android:layout_above="@id/btn_order">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/desc_movie_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lorsum"
+                android:textColor="@color/white"
+                android:fontFamily="@font/product_sans_regular"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp" />
+
+            <TextView
+                android:id="@+id/release_movie_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Release : 2023/04/03"
+                android:layout_marginTop="16dp"
+                android:textColor="@color/white"
+                android:layout_below="@id/desc_movie_detail"
+                android:fontFamily="@font/product_sans_regular"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp" />
+
+            <TextView
+                android:id="@+id/price_movie_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp.20.000"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:fontFamily="@font/product_sans_regular"
+                android:drawablePadding="4dp"
+                android:layout_below="@id/release_movie_detail"
+                android:background="@drawable/textfield_shape"
+                android:padding="6dp"
+                android:layout_margin="16dp"
+                app:drawableStartCompat="@drawable/ic_ticket" />
+
+            <TextView
+                android:id="@+id/age_movie_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="For age 14 years above"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:fontFamily="@font/product_sans_regular"
+                android:drawablePadding="4dp"
+                android:layout_toEndOf="@id/price_movie_detail"
+                android:layout_below="@id/release_movie_detail"
+                android:background="@drawable/textfield_shape"
+                android:padding="6dp"
+                android:layout_margin="16dp"
+                app:drawableStartCompat="@drawable/ic_arrow_up" />
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btn_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:layout_margin="16dp"
+        android:layout_alignParentBottom="true"
+        app:cardBackgroundColor="@color/primary"
+        app:cardCornerRadius="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/order_ticket"
+            android:fontFamily="@font/product_sans_regular"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:padding="16dp"/>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_layout"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".auth.RegisterActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register_account"
+        android:textColor="@color/white"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/product_sans_bold"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/name"
+        android:background="@drawable/textfield_shape"
+        android:padding="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/text_hint"
+        android:textSize="16sp"
+        android:inputType="textPersonName"
+        android:fontFamily="@font/product_sans_regular"
+        android:layout_marginTop="24dp"/>
+
+    <EditText
+        android:id="@+id/et_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/age"
+        android:background="@drawable/textfield_shape"
+        android:padding="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/text_hint"
+        android:textSize="16sp"
+        android:inputType="numberDecimal"
+        android:fontFamily="@font/product_sans_regular"
+        android:layout_marginTop="24dp"/>
+
+    <EditText
+        android:id="@+id/et_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/username"
+        android:background="@drawable/textfield_shape"
+        android:padding="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/text_hint"
+        android:textSize="16sp"
+        android:fontFamily="@font/product_sans_regular"
+        android:layout_marginTop="24dp"/>
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        android:background="@drawable/textfield_shape"
+        android:padding="16dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/text_hint"
+        android:textSize="16sp"
+        android:inputType="textPassword"
+        android:fontFamily="@font/product_sans_regular"
+        android:layout_marginTop="24dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/primary"
+        app:cardCornerRadius="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register"
+            android:fontFamily="@font/product_sans_regular"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:padding="16dp"/>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tx_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/i_already_have_account_login"
+        android:layout_margin="24dp"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/white"
+        android:fontFamily="@font/product_sans_regular"
+        android:textSize="18sp"/>
+</LinearLayout>

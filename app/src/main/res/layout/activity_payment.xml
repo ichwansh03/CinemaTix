@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_layout"
+    android:padding="16dp"
+    tools:context=".view.PaymentActivity">
+
+    <TextView
+        android:id="@+id/txtlpayment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/total_payment"
+        android:textColor="@color/white"
+        android:fontFamily="@font/product_sans_regular"
+        android:layout_marginTop="24dp"/>
+
+    <TextView
+        android:id="@+id/total_payment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rp.300.000"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:fontFamily="@font/product_sans_bold"
+        android:layout_below="@id/txtlpayment"/>
+
+    <TextView
+        android:id="@+id/txtlbalance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/current_balance"
+        android:textColor="@color/white"
+        android:layout_alignParentEnd="true"
+        android:fontFamily="@font/product_sans_regular"
+        android:layout_marginTop="24dp"/>
+
+    <TextView
+        android:id="@+id/current_balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rp.300.000"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:layout_alignParentEnd="true"
+        android:fontFamily="@font/product_sans_bold"
+        android:layout_below="@id/txtlpayment"/>
+
+    <EditText
+        android:id="@+id/input_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/input_amount_to_pay"
+        android:background="@drawable/textfield_shape"
+        android:padding="16dp"
+        android:textColor="@color/white"
+        android:inputType="numberDecimal"
+        android:textColorHint="@color/text_hint"
+        android:textSize="16sp"
+        android:layout_below="@id/current_balance"
+        android:fontFamily="@font/product_sans_regular"
+        android:layout_marginTop="24dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btn_pay_cash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_below="@id/input_amount"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/primary"
+        app:cardCornerRadius="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pay"
+            android:fontFamily="@font/product_sans_regular"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:padding="16dp"/>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

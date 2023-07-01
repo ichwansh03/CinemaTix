@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_layout"
+    android:padding="16dp"
+    tools:context=".view.CartActivity">
+
+    <TextView
+        android:id="@+id/tx_ticket_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pay Your Ticket"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:fontFamily="@font/product_sans_bold"
+        android:layout_marginStart="16dp" />
+
+    <TextView
+        android:id="@+id/tx_ticket_order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*you can order only less than 6 tickets"
+        android:textColor="@color/white"
+        android:textStyle="italic"
+        android:fontFamily="@font/product_sans_regular"
+        android:layout_marginStart="16dp"
+        android:layout_below="@id/tx_ticket_pay" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_ticket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MaterialCardView.Ticket"
+        app:cardBackgroundColor="@color/primary"
+        android:layout_margin="16dp"
+        android:layout_below="@id/tx_ticket_order">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_movies"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="-20dp"
+            android:layout_marginStart="-12dp"
+            android:alpha="0.2"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/name_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name: Paimin Alexander"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:fontFamily="@font/product_sans_bold"
+                android:layout_margin="4dp"/>
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_below="@id/name_order"
+                android:background="@color/bg_layout"/>
+
+            <TextView
+                android:id="@+id/title_movie_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/i_already_have_account_login"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:layout_below="@id/line"
+                android:fontFamily="@font/product_sans_regular"
+                android:layout_margin="4dp"/>
+
+            <TextView
+                android:id="@+id/price_movie_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rp.20.000"
+                android:textColor="@color/white"
+                android:layout_below="@id/title_movie_order"
+                android:fontFamily="@font/product_sans_regular"
+                android:layout_margin="4dp"
+                android:drawablePadding="4dp"
+                android:textSize="17sp"
+                app:drawableStartCompat="@drawable/ic_ticket" />
+
+            <TextView
+                android:id="@+id/txorder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Order Ticket"
+                android:textColor="@color/white"
+                android:layout_below="@id/price_movie_order"
+                android:layout_alignParentEnd="true"
+                android:fontFamily="@font/product_sans_regular"
+                android:layout_margin="4dp"
+                android:textSize="17sp" />
+
+            <ImageButton
+                android:id="@+id/btn_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_add"
+                android:background="@android:color/transparent"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/txorder"/>
+
+            <TextView
+                android:id="@+id/tx_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="22sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/product_sans_bold"
+                android:layout_toStartOf="@id/btn_add"
+                android:layout_below="@id/txorder"
+                android:layout_marginEnd="4dp"/>
+
+            <ImageButton
+                android:id="@+id/btn_min"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_min"
+                android:layout_toStartOf="@id/tx_count"
+                android:layout_marginEnd="4dp"
+                android:background="@android:color/transparent"
+                android:layout_below="@id/txorder"/>
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tx_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Booking Your Seat"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:fontFamily="@font/product_sans_bold"
+        android:layout_marginStart="16dp"
+        android:layout_below="@id/cv_ticket" />
+
+    <TextView
+        android:id="@+id/tx_seats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="*input seats number"
+        android:textColor="@color/white"
+        android:textStyle="italic"
+        android:fontFamily="@font/product_sans_regular"
+        android:layout_marginStart="16dp"
+        android:layout_below="@id/tx_book" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btn_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        android:layout_margin="16dp"
+        android:layout_alignParentBottom="true"
+        app:cardBackgroundColor="@color/primary"
+        app:cardCornerRadius="16dp">
+
+        <TextView
+            android:id="@+id/total_pay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pay (Rp.300.000)"
+            android:fontFamily="@font/product_sans_regular"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:padding="16dp"/>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
