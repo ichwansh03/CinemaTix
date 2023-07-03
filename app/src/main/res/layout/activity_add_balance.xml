@@ -15,11 +15,91 @@
         android:hint="@string/input_amount"
         android:background="@drawable/textfield_shape"
         android:padding="16dp"
+        android:layout_margin="16dp"
         android:textColor="@color/white"
         android:textColorHint="@color/text_hint"
         android:textSize="16sp"
         android:inputType="numberDecimal"
         android:fontFamily="@font/product_sans_regular"
         android:layout_marginTop="24dp"/>
+
+    <TextView
+        android:id="@+id/wd50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rp50.000"
+        android:textColor="@color/white"
+        android:fontFamily="@font/product_sans_regular"
+        android:background="@drawable/textfield_shape"
+        android:padding="12dp"
+        android:layout_below="@id/et_balance"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:id="@+id/wd100"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rp100.000"
+        android:textColor="@color/white"
+        android:fontFamily="@font/product_sans_regular"
+        android:background="@drawable/textfield_shape"
+        android:padding="12dp"
+        android:layout_below="@id/et_balance"
+        android:layout_toEndOf="@id/wd50"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:id="@+id/wd250"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rp250.000"
+        android:textColor="@color/white"
+        android:fontFamily="@font/product_sans_regular"
+        android:background="@drawable/textfield_shape"
+        android:padding="12dp"
+        android:layout_below="@id/et_balance"
+        android:layout_toEndOf="@id/wd100"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"/>
+
+    <TextView
+        android:id="@+id/wd500"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rp500.000"
+        android:textColor="@color/white"
+        android:fontFamily="@font/product_sans_regular"
+        android:background="@drawable/textfield_shape"
+        android:padding="12dp"
+        android:layout_below="@id/wd50"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btn_withdraw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_below="@id/wd500"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/primary"
+        app:cardCornerRadius="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/withdraw"
+            android:fontFamily="@font/product_sans_regular"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:padding="16dp"/>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>

@@ -1,13 +1,14 @@
-package com.ichwan.moviecompfest.view
+package com.ichwan.moviecompfest.service
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.DialogFragment
 import com.ichwan.moviecompfest.R
 
-class DialogPaymentSuccessFragment : Fragment() {
+class DialogPaymentSuccessFragment : DialogFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

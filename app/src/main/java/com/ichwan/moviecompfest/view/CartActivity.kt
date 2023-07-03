@@ -24,7 +24,6 @@ class CartActivity : AppCompatActivity() {
 
     private val formatRp = NumberFormat.getCurrencyInstance(Locale("id","ID"))
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCartBinding.inflate(layoutInflater)
@@ -42,7 +41,7 @@ class CartActivity : AppCompatActivity() {
             }
 
             total = GlobalData.priceMovie * quantities
-
+            updateTotalPay()
         }
 
         binding.btnMin.setOnClickListener {
@@ -51,14 +50,18 @@ class CartActivity : AppCompatActivity() {
                 binding.txCount.text = quantities.toString()
             }
             total = GlobalData.priceMovie * quantities
+            updateTotalPay()
         }
-
-        binding.totalPay.text = "Pay (${formatRp.format(total)})"
-        GlobalData.totalPayment = total
 
         binding.btnOrder.setOnClickListener {
             insertDataOrder()
         }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun updateTotalPay() {
+        binding.totalPay.text = "Pay (${formatRp.format(total)})"
+        GlobalData.totalPayment = total
     }
 
     private fun showDataOrder() {
@@ -71,7 +74,7 @@ class CartActivity : AppCompatActivity() {
     private fun insertDataOrder() {
         formatRp.minimumFractionDigits = 0
 
-        val url: String = GlobalData.BASE_URL +"item/addorder.php"
+        val url: String = GlobalData.BASE_URL +"order/addorder.php"
         val queue = Volley.newRequestQueue(this)
         val request = object : StringRequest(Method.POST, url, Response.Listener { _ ->
             startActivity(Intent(this, PaymentActivity::class.java))

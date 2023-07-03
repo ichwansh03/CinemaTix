@@ -78,6 +78,7 @@
         android:hint="@string/search"
         android:background="@drawable/textfield_shape"
         android:padding="16dp"
+        android:focusable="true"
         android:drawableStart="@drawable/ic_search"
         android:drawablePadding="4dp"
         android:textColor="@color/white"

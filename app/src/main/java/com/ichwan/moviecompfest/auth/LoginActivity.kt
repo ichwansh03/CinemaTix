@@ -8,18 +8,15 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.ichwan.moviecompfest.R
-import com.ichwan.moviecompfest.auth.LoginActivity.UserData.name
-import com.ichwan.moviecompfest.auth.LoginActivity.UserData.username
+import com.ichwan.moviecompfest.databinding.ActivityLoginBinding
 import com.ichwan.moviecompfest.service.GlobalData
 import com.ichwan.moviecompfest.view.MainActivity
-import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONArray
 import org.json.JSONException
 
 class LoginActivity : AppCompatActivity() {
 
-    val queue: RequestQueue = Volley.newRequestQueue(this)
+    private lateinit var binding: ActivityLoginBinding
 
     object UserData {
         var username: String = ""
@@ -29,17 +26,21 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        tx_register.setOnClickListener {
+        binding.txRegister.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 
-        btn_login.setOnClickListener {
-            val request = StringRequest(Request.Method.GET, GlobalData.BASE_URL+"login.php?username="+et_username_login.text.toString()+"&password="+et_password_login.text.toString(),
+        binding.btnLogin.setOnClickListener {
+            val queue: RequestQueue = Volley.newRequestQueue(applicationContext)
+            val request = StringRequest(Request.Method.GET, GlobalData.BASE_URL+"login.php?username="+binding.etUsernameLogin.text.toString()+"&password="+binding.etPasswordLogin.text.toString(),
                 { response ->
                     if (response.equals("0")) {
-                        getDataUser(username = et_username_login.text.toString())
+                        startActivity(Intent(this, MainActivity::class.java))
+                        //belum ke get
+                        getDataUser(binding.etUsernameLogin.text.toString())
                     }
                 },
                 { error ->
@@ -50,6 +51,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun getDataUser(username: String) {
+        val queue: RequestQueue = Volley.newRequestQueue(applicationContext)
         val request = StringRequest(Request.Method.GET, GlobalData.BASE_URL+"getuser.php?username=$username", null) { response ->
             try {
                 val jsonArray = JSONArray(response.toString())

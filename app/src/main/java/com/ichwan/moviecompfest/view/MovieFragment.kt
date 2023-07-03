@@ -54,7 +54,7 @@ class MovieFragment : Fragment() {
             }
 
             override fun afterTextChanged(p0: Editable?) {
-                TODO("Not yet implemented")
+
             }
         })
 

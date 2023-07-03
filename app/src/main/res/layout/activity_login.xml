@@ -12,14 +12,14 @@
         android:layout_height="match_parent"
         android:src="@drawable/cinema"
         android:scaleType="fitXY"
-        android:alpha="0.1"/>
+        android:alpha="0.2"/>
 
     <ImageView
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:src="@drawable/ic_movies"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"/>
+        android:layout_marginTop="120dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,6 +63,16 @@
             android:inputType="textPassword"
             android:fontFamily="@font/product_sans_regular"
             android:layout_marginTop="24dp"/>
+
+        <TextView
+            android:id="@+id/forgot_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/forgot_password"
+            android:textColor="@color/white"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/product_sans_regular"
+            android:layout_gravity="end"/>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/btn_login"

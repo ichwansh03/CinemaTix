@@ -8,19 +8,22 @@ import android.widget.Toast
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.ichwan.moviecompfest.R
+import com.ichwan.moviecompfest.databinding.ActivityRegisterBinding
 import com.ichwan.moviecompfest.service.GlobalData
-import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityRegisterBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        binding = ActivityRegisterBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        tx_login.setOnClickListener { finish() }
+        binding.txLogin.setOnClickListener { finish() }
 
-        btn_register.setOnClickListener {
-            if (et_name.text.toString().isEmpty() && et_age.text.toString().isEmpty() && et_username.text.toString().isEmpty() && et_password.text.toString().isEmpty()) {
+        binding.btnRegister.setOnClickListener {
+            if (binding.etName.text.toString().isEmpty() && binding.etAge.text.toString().isEmpty() && binding.etUsername.text.toString().isEmpty() && binding.etPassword.text.toString().isEmpty()) {
                 Toast.makeText(applicationContext, "You must have complete all data", Toast.LENGTH_SHORT).show()
             } else {
                 val queue = Volley.newRequestQueue(applicationContext)
@@ -35,10 +38,10 @@ class RegisterActivity : AppCompatActivity() {
                 {
                     override fun getParams(): MutableMap<String, String> {
                         val param = HashMap<String, String>()
-                        param["name"] = et_name.text.toString()
-                        param["age"] = et_age.text.toString()
-                        param["username"] = et_username.text.toString()
-                        param["password"] = et_password.text.toString()
+                        param["name"] = binding.etName.text.toString()
+                        param["age"] = binding.etAge.text.toString()
+                        param["username"] = binding.etUsername.text.toString()
+                        param["password"] = binding.etPassword.text.toString()
                         return param
                     }
                 }
