@@ -4,9 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.ichwan.moviecompfest.databinding.ActivityPaymentBinding
-import com.ichwan.moviecompfest.service.AddBalanceActivity
-import com.ichwan.moviecompfest.service.DialogPaymentSuccessFragment
 import com.ichwan.moviecompfest.service.GlobalData
+import com.ichwan.moviecompfest.view.impl.AddBalanceActivity
 import java.text.NumberFormat
 import java.util.*
 

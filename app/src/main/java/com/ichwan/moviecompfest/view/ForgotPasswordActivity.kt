@@ -1,4 +1,4 @@
-package com.ichwan.moviecompfest.service
+package com.ichwan.moviecompfest.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

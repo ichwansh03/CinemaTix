@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:background="@color/bg_layout"
-    tools:context=".service.DialogNoInternetFragment">
+    tools:context=".view.DialogNoInternetFragment">
 
     <ImageView
         android:layout_width="200dp"

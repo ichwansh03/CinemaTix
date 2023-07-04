@@ -1,6 +1,7 @@
-package com.ichwan.moviecompfest.view
+package com.ichwan.moviecompfest.view.impl
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -21,9 +22,9 @@ import com.ichwan.moviecompfest.adapter.MovieAdapter
 import com.ichwan.moviecompfest.auth.LoginActivity
 import com.ichwan.moviecompfest.databinding.FragmentMovieBinding
 import com.ichwan.moviecompfest.model.MovieItem
-import com.ichwan.moviecompfest.service.AddBalanceActivity
+import com.ichwan.moviecompfest.service.ShowData
 
-class MovieFragment : Fragment() {
+class MovieFragment : Fragment(), ShowData {
 
     private var list = ArrayList<MovieItem>()
     private var _binding: FragmentMovieBinding? = null
@@ -33,7 +34,7 @@ class MovieFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentMovieBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -61,7 +62,7 @@ class MovieFragment : Fragment() {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             handler.post {
-                getDataMovie()
+                getData(requireContext(), "null","https://seleksi-sea-2023.vercel.app/api/movies")
                 binding.pbMovie.visibility = View.GONE
             }
         },5000)
@@ -83,41 +84,35 @@ class MovieFragment : Fragment() {
         binding.rvMovie.adapter = adapter
     }
 
-    private fun getDataMovie() {
+    override fun getData(context: Context, username: String, url: String) {
+        val queue: RequestQueue = Volley.newRequestQueue(context)
+        val request = JsonArrayRequest(Request.Method.GET, url, null, { response ->
 
-        val activity = activity
-        val url: String = "https://seleksi-sea-2023.vercel.app/api/movies"
+            if (response.length() == 0){
+                //no internet connection
+            } else {
+                for (i in 0 until response.length()){
+                    val jsonObject = response.getJSONObject(i)
+                    val id = jsonObject.getInt("id")
+                    val title = jsonObject.getString("title")
+                    val price = jsonObject.getInt("ticket_price")
+                    val age = jsonObject.getInt("age_rating")
+                    val poster = jsonObject.getString("poster_url")
+                    val description = jsonObject.getString("description")
+                    val release = jsonObject.getString("release_date")
 
-        if (activity != null) {
-            val queue: RequestQueue = Volley.newRequestQueue(activity)
-            val request = JsonArrayRequest(Request.Method.GET, url, null, { response ->
+                    list.add(MovieItem(id, title, description, release, poster, age, price))
 
-                if (response.length() == 0){
-                    //no internet connection
-                } else {
-                    for (i in 0 until response.length()){
-                        val jsonObject = response.getJSONObject(i)
-                        val id = jsonObject.getInt("id")
-                        val title = jsonObject.getString("title")
-                        val price = jsonObject.getInt("ticket_price")
-                        val age = jsonObject.getInt("age_rating")
-                        val poster = jsonObject.getString("poster_url")
-                        val description = jsonObject.getString("description")
-                        val release = jsonObject.getString("release_date")
-
-                        list.add(MovieItem(id, title, description, release, poster, age, price))
-
-                        val adapter = MovieAdapter(requireContext(), list)
-                        binding.rvMovie.layoutManager = GridLayoutManager(requireContext(),2)
-                        binding.rvMovie.adapter = adapter
-                    }
+                    val adapter = MovieAdapter(requireContext(), list)
+                    binding.rvMovie.layoutManager = GridLayoutManager(requireContext(),2)
+                    binding.rvMovie.adapter = adapter
                 }
+            }
 
-            }, { error ->
-                Log.d("error data movie ",error.toString())
-            })
-            queue.add(request)
-        }
+        }, { error ->
+            Log.d("error data movie ",error.toString())
+        })
+        queue.add(request)
     }
 
 }

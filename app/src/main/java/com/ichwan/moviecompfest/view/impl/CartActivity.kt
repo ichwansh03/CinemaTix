@@ -1,6 +1,7 @@
-package com.ichwan.moviecompfest.view
+package com.ichwan.moviecompfest.view.impl
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,11 +13,13 @@ import com.android.volley.toolbox.Volley
 import com.ichwan.moviecompfest.auth.LoginActivity
 import com.ichwan.moviecompfest.databinding.ActivityCartBinding
 import com.ichwan.moviecompfest.service.GlobalData
+import com.ichwan.moviecompfest.service.InsertData
+import com.ichwan.moviecompfest.view.PaymentActivity
 import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.HashMap
 
-class CartActivity : AppCompatActivity() {
+class CartActivity : AppCompatActivity(), InsertData {
 
     private lateinit var binding: ActivityCartBinding
     private var quantities: Int = 0
@@ -54,7 +57,7 @@ class CartActivity : AppCompatActivity() {
         }
 
         binding.btnOrder.setOnClickListener {
-            insertDataOrder()
+            insert(this, GlobalData.BASE_URL +"order/addorder.php")
         }
     }
 
@@ -71,17 +74,16 @@ class CartActivity : AppCompatActivity() {
         binding.priceMovieOrder.text = formatRp.format(GlobalData.priceMovie)
     }
 
-    private fun insertDataOrder() {
+    override fun insert(context: Context, url: String) {
         formatRp.minimumFractionDigits = 0
 
-        val url: String = GlobalData.BASE_URL +"order/addorder.php"
-        val queue = Volley.newRequestQueue(this)
+        val queue = Volley.newRequestQueue(context)
         val request = object : StringRequest(Method.POST, url, Response.Listener { _ ->
             startActivity(Intent(this, PaymentActivity::class.java))
         },
-        Response.ErrorListener { error ->
-            Log.d("error insert cart ", error.message.toString())
-        }) {
+            Response.ErrorListener { error ->
+                Log.d("error insert cart ", error.message.toString())
+            }) {
             override fun getParams(): MutableMap<String, String> {
                 val params = HashMap<String, String>()
                 params["name"] = binding.nameOrder.text.toString()

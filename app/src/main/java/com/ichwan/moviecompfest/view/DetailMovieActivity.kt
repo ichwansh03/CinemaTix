@@ -9,6 +9,7 @@ import com.google.gson.Gson
 import com.ichwan.moviecompfest.databinding.ActivityDetailMovieBinding
 import com.ichwan.moviecompfest.model.MovieItem
 import com.ichwan.moviecompfest.service.GlobalData
+import com.ichwan.moviecompfest.view.impl.CartActivity
 import java.text.NumberFormat
 import java.util.*
 

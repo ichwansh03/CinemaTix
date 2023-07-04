@@ -1,6 +1,7 @@
-package com.ichwan.moviecompfest.service
+package com.ichwan.moviecompfest.view.impl
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,8 +11,10 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.ichwan.moviecompfest.auth.LoginActivity
 import com.ichwan.moviecompfest.databinding.ActivityAddBalanceBinding
+import com.ichwan.moviecompfest.service.GlobalData
+import com.ichwan.moviecompfest.service.InsertData
 
-class AddBalanceActivity : AppCompatActivity() {
+class AddBalanceActivity : AppCompatActivity(), InsertData {
 
     private lateinit var binding: ActivityAddBalanceBinding
 
@@ -30,20 +33,18 @@ class AddBalanceActivity : AppCompatActivity() {
         binding.wd250.setOnClickListener { binding.etBalance.setText("250000") }
         binding.wd500.setOnClickListener { binding.etBalance.setText("500000") }
 
-        insertWithdraw()
+        insert(this, GlobalData.BASE_URL +"balance/withdraw.php")
     }
 
-    private fun insertWithdraw() {
-        val url: String = GlobalData.BASE_URL+"balance/withdraw.php"
-        val queue = Volley.newRequestQueue(this)
-        val request = object : StringRequest(Method.POST, url, Response.Listener { _ ->
+    override fun insert(context: Context, url: String) {
+        val queue = Volley.newRequestQueue(context)
+        val request = object : StringRequest(Method.POST, url, Response.Listener {
             Toast.makeText(this, "Balance succesfully added", Toast.LENGTH_SHORT).show()
             finish()
-        },
-        Response.ErrorListener {
-            error ->
-            Log.d("error manage balance ",error.message.toString())
-        }) {
+        }, Response.ErrorListener {
+                    error ->
+                Log.d("error manage balance ",error.message.toString())
+            }) {
             override fun getParams(): MutableMap<String, String> {
                 val params = HashMap<String, String>()
                 params["username"] = LoginActivity.UserData.username
@@ -54,4 +55,5 @@ class AddBalanceActivity : AppCompatActivity() {
         }
         queue.add(request)
     }
+
 }

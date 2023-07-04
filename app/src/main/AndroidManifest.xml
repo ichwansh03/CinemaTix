@@ -14,10 +14,10 @@
         android:theme="@style/Theme.MovieCompfest"
         tools:targetApi="31">
         <activity
-            android:name=".service.ForgotPasswordActivity"
+            android:name=".view.ForgotPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".service.AddBalanceActivity"
+            android:name=".view.impl.AddBalanceActivity"
             android:exported="false" />
         <activity
             android:name=".view.PaymentActivity"
@@ -26,7 +26,7 @@
             android:name=".view.DetailMovieActivity"
             android:exported="false" />
         <activity
-            android:name=".view.CartActivity"
+            android:name=".view.impl.CartActivity"
             android:exported="false" />
         <activity
             android:name=".auth.LoginActivity"

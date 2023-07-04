@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/bg_layout"
     android:padding="16dp"
-    tools:context=".view.MovieFragment">
+    tools:context=".view.impl.MovieFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_info"

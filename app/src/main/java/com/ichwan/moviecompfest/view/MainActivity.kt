@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.ichwan.moviecompfest.R
 import com.ichwan.moviecompfest.databinding.ActivityMainBinding
-import com.ismaeldivita.chipnavigation.ChipNavigationBar
+import com.ichwan.moviecompfest.view.impl.MovieFragment
 
 class MainActivity : AppCompatActivity() {
 
