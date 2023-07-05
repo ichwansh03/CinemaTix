@@ -1,14 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.OrderFragment">
+    android:padding="16dp"
+    android:background="@color/bg_layout"
+    tools:context=".view.impl.OrderFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <EditText
+        android:id="@+id/search_bar_order"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:hint="@string/search"
+        android:background="@drawable/textfield_shape"
+        android:padding="16dp"
+        android:layout_margin="16dp"
+        android:focusable="false"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="4dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/text_hint"
+        android:textSize="16sp"
+        android:fontFamily="@font/product_sans_regular"
+        android:layout_marginTop="24dp"/>
 
-</FrameLayout>
+    <ProgressBar
+        android:id="@+id/pb_order"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/item_orders"
+        android:layout_below="@id/search_bar_order"/>
+
+</RelativeLayout>

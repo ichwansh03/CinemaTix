@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/cv_frame_order"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="16dp"
+    app:cardCornerRadius="16dp"
+    app:cardBackgroundColor="@color/primary">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/name_orders"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:fontFamily="@font/product_sans_bold"
+            android:layout_margin="8dp"
+            app:drawableStartCompat="@drawable/ic_person" />
+
+        <TextView
+            android:id="@+id/title_orders"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/i_already_have_account_login"
+            android:layout_below="@id/name_orders"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/product_sans_regular"
+            app:drawableStartCompat="@drawable/ic_movies" />
+
+        <TextView
+            android:id="@+id/quantity_orders"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6 Tickets"
+            android:layout_below="@id/title_orders"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:layout_margin="8dp"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="@font/product_sans_regular"
+            app:drawableStartCompat="@drawable/ic_ticket" />
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
