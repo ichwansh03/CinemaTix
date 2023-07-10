@@ -47,6 +47,15 @@
             android:layout_alignParentEnd="true"
             android:fontFamily="@font/product_sans_regular"
             app:drawableStartCompat="@drawable/ic_ticket" />
+
+        <ImageButton
+            android:id="@+id/btn_cancel_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_cancel"
+            android:background="@android:color/transparent"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="8dp"/>
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

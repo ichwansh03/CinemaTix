@@ -18,17 +18,21 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.ichwan.moviecompfest.adapter.OrderAdapter
-import com.ichwan.moviecompfest.auth.LoginActivity
 import com.ichwan.moviecompfest.databinding.FragmentOrderBinding
 import com.ichwan.moviecompfest.model.OrderItem
+import com.ichwan.moviecompfest.service.DeleteDataOrder
 import com.ichwan.moviecompfest.service.GlobalData
-import com.ichwan.moviecompfest.service.ShowData
+import com.ichwan.moviecompfest.service.ShowDataMovie
 
-class OrderFragment : Fragment(), ShowData {
+class OrderFragment : Fragment(), ShowDataMovie {
 
     private var list = ArrayList<OrderItem>()
+    private var username: String? = null
+
     private var _binding: FragmentOrderBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var adapter: OrderAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +40,8 @@ class OrderFragment : Fragment(), ShowData {
     ): View {
         _binding = FragmentOrderBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        username = requireActivity().intent.getStringExtra("username")
 
         binding.searchBarOrder.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -54,7 +60,7 @@ class OrderFragment : Fragment(), ShowData {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             handler.post {
-                getData(requireContext(), LoginActivity.UserData.username, GlobalData.BASE_URL+"order/getorder.php?")
+                getData(requireContext(), username.toString(), GlobalData.BASE_URL+"order/getorder.php?username=$username")
                 binding.pbOrder.visibility = View.GONE
             }
         }, 5000)
@@ -70,10 +76,7 @@ class OrderFragment : Fragment(), ShowData {
                 filterList.add(item)
             }
         }
-        val adapter = OrderAdapter(requireContext(), list)
-        binding.rvOrder.layoutManager = LinearLayoutManager(context)
-        binding.rvOrder.adapter = adapter
-
+        setAdapter(requireContext())
     }
 
     override fun getData(context: Context, username: String, url: String) {
@@ -93,9 +96,7 @@ class OrderFragment : Fragment(), ShowData {
 
                     list.add(OrderItem(id, name, title, quantity))
 
-                    val adapter = OrderAdapter(context, list)
-                    binding.rvOrder.layoutManager = LinearLayoutManager(context)
-                    binding.rvOrder.adapter = adapter
+                    setAdapter(context)
                 }
             }
 
@@ -106,4 +107,14 @@ class OrderFragment : Fragment(), ShowData {
         queue.add(request)
     }
 
+    private fun setAdapter(context: Context){
+        adapter = OrderAdapter(context, list, object : DeleteDataOrder{
+            override fun onDelete(position: Int) {
+                list.removeAt(position)
+                adapter.notifyItemRemoved(position)
+            }
+        })
+        binding.rvOrder.layoutManager = LinearLayoutManager(context)
+        binding.rvOrder.adapter = adapter
+    }
 }
