@@ -13,18 +13,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
 import com.ichwan.moviecompfest.adapter.MovieAdapter
-import com.ichwan.moviecompfest.auth.LoginActivity
 import com.ichwan.moviecompfest.databinding.FragmentMovieBinding
 import com.ichwan.moviecompfest.model.MovieItem
-import com.ichwan.moviecompfest.service.ShowData
+import com.ichwan.moviecompfest.service.ShowDataMovie
 
-class MovieFragment : Fragment(), ShowData {
+class MovieFragment : Fragment(), ShowDataMovie {
 
     private var list = ArrayList<MovieItem>()
     private var _binding: FragmentMovieBinding? = null
@@ -35,30 +35,24 @@ class MovieFragment : Fragment(), ShowData {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentMovieBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        binding.greeting.text = "Welcome ${LoginActivity.UserData.username}"
+        val username = requireActivity().intent.getStringExtra("username")
+        binding.greeting.text = "Welcome, $username"
 
         binding.topupBalance.setOnClickListener {
-            startActivity(Intent(requireContext(), AddBalanceActivity::class.java))
+            shareUsername(requireContext(), AddBalanceActivity::class.java, username)
         }
 
-        binding.searchBar.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        searchBar()
 
-            }
+        handlerData()
 
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                searchItem(p0.toString())
-            }
+        return view
+    }
 
-            override fun afterTextChanged(p0: Editable?) {
-
-            }
-        })
-
+    private fun handlerData() {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             handler.post {
@@ -66,8 +60,18 @@ class MovieFragment : Fragment(), ShowData {
                 binding.pbMovie.visibility = View.GONE
             }
         },5000)
+    }
 
-        return view
+    private fun searchBar() {
+        binding.searchBar.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                searchItem(p0.toString())
+            }
+
+            override fun afterTextChanged(p0: Editable?) {}
+        })
     }
 
     private fun searchItem(key: String) {
@@ -79,9 +83,7 @@ class MovieFragment : Fragment(), ShowData {
             }
         }
 
-        val adapter = MovieAdapter(requireContext(), filterList)
-        binding.rvMovie.layoutManager = GridLayoutManager(requireContext(),2)
-        binding.rvMovie.adapter = adapter
+        setAdapter(requireContext(), list)
     }
 
     override fun getData(context: Context, username: String, url: String) {
@@ -89,7 +91,7 @@ class MovieFragment : Fragment(), ShowData {
         val request = JsonArrayRequest(Request.Method.GET, url, null, { response ->
 
             if (response.length() == 0){
-                //no internet connection
+                Toast.makeText(context,"No internet connection!",Toast.LENGTH_SHORT).show()
             } else {
                 for (i in 0 until response.length()){
                     val jsonObject = response.getJSONObject(i)
@@ -103,9 +105,7 @@ class MovieFragment : Fragment(), ShowData {
 
                     list.add(MovieItem(id, title, description, release, poster, age, price))
 
-                    val adapter = MovieAdapter(requireContext(), list)
-                    binding.rvMovie.layoutManager = GridLayoutManager(requireContext(),2)
-                    binding.rvMovie.adapter = adapter
+                    setAdapter(context, list)
                 }
             }
 
@@ -113,6 +113,22 @@ class MovieFragment : Fragment(), ShowData {
             Log.d("error data movie ",error.toString())
         })
         queue.add(request)
+    }
+
+    private fun shareUsername(
+        context: Context,
+        classes: Class<*>,
+        username: String?
+    ){
+        val intent = Intent(context, classes)
+        intent.putExtra("username", username)
+        startActivity(intent)
+    }
+
+    private fun setAdapter(context: Context, list: ArrayList<MovieItem>){
+        val adapter = MovieAdapter(context, list)
+        binding.rvMovie.layoutManager = GridLayoutManager(context,2)
+        binding.rvMovie.adapter = adapter
     }
 
 }

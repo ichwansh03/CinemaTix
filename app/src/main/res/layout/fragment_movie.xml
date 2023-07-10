@@ -50,7 +50,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rp.20.000"
+                android:text="Rp0"
                 android:drawablePadding="4dp"
                 android:fontFamily="@font/product_sans_bold"
                 android:textColor="@color/white"
@@ -78,7 +78,7 @@
         android:hint="@string/search"
         android:background="@drawable/textfield_shape"
         android:padding="16dp"
-        android:focusable="true"
+        android:focusable="false"
         android:drawableStart="@drawable/ic_search"
         android:drawablePadding="4dp"
         android:textColor="@color/white"

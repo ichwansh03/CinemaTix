@@ -2,7 +2,7 @@ package com.ichwan.moviecompfest.service
 
 import android.content.Context
 
-interface ShowData {
+interface ShowDataMovie {
 
     fun getData(context: Context, username: String, url: String)
 }
