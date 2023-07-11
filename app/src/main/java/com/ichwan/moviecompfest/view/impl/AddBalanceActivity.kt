@@ -2,7 +2,6 @@ package com.ichwan.moviecompfest.view.impl
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -13,13 +12,16 @@ import com.android.volley.toolbox.Volley
 import com.ichwan.moviecompfest.databinding.ActivityAddBalanceBinding
 import com.ichwan.moviecompfest.service.GlobalData
 import com.ichwan.moviecompfest.service.InsertData
-import com.ichwan.moviecompfest.view.MainActivity
-import com.ichwan.moviecompfest.view.PaymentActivity
+import java.text.NumberFormat
+import java.util.*
+import kotlin.collections.HashMap
 
 class AddBalanceActivity : AppCompatActivity(), InsertData {
 
     private lateinit var binding: ActivityAddBalanceBinding
     private var username: String? = null
+    private var balance: Int? = 0
+    private val formatRp = NumberFormat.getCurrencyInstance(Locale("id","ID"))
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,18 +29,19 @@ class AddBalanceActivity : AppCompatActivity(), InsertData {
         binding = ActivityAddBalanceBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val activity = MainActivity()
-        activity.getData()
+        username = intent.getStringExtra("username")
+        balance = intent.getIntExtra("balance",0)
 
-        username = MainActivity.User.username
+        binding.currentBalance.text = formatRp.format(balance)
 
         binding.wd50.setOnClickListener { binding.etBalance.setText("50000") }
         binding.wd100.setOnClickListener { binding.etBalance.setText("100000") }
         binding.wd250.setOnClickListener { binding.etBalance.setText("250000") }
         binding.wd500.setOnClickListener { binding.etBalance.setText("500000") }
 
-        insert(this, GlobalData.BASE_URL +"balance/withdraw.php")
-
+        binding.btnWithdraw.setOnClickListener {
+            insert(this, GlobalData.BASE_URL +"balance/withdraw.php")
+        }
     }
 
     override fun insert(context: Context, url: String) {
@@ -53,7 +56,7 @@ class AddBalanceActivity : AppCompatActivity(), InsertData {
             override fun getParams(): MutableMap<String, String> {
                 val params = HashMap<String, String>()
                 params["username"] = username.toString()
-                params["balance"] = binding.etBalance.toString()
+                params["balance"] = binding.etBalance.text.toString()
                 return params
             }
         }

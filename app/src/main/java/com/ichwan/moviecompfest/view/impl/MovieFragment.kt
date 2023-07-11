@@ -22,13 +22,21 @@ import com.android.volley.toolbox.Volley
 import com.ichwan.moviecompfest.adapter.MovieAdapter
 import com.ichwan.moviecompfest.databinding.FragmentMovieBinding
 import com.ichwan.moviecompfest.model.MovieItem
+import com.ichwan.moviecompfest.service.GlobalData
 import com.ichwan.moviecompfest.service.ShowDataMovie
+import java.text.NumberFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MovieFragment : Fragment(), ShowDataMovie {
 
     private var list = ArrayList<MovieItem>()
     private var _binding: FragmentMovieBinding? = null
     private val binding get() = _binding!!
+
+    object Balance{
+        var amount: Int? = 0
+    }
 
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
@@ -41,6 +49,8 @@ class MovieFragment : Fragment(), ShowDataMovie {
         val username = requireActivity().intent.getStringExtra("username")
         binding.greeting.text = "Welcome, $username"
 
+        getDataBalance(requireContext(), username)
+
         binding.topupBalance.setOnClickListener {
             shareUsername(requireContext(), AddBalanceActivity::class.java, username)
         }
@@ -50,6 +60,27 @@ class MovieFragment : Fragment(), ShowDataMovie {
         handlerData()
 
         return view
+    }
+
+    private fun getDataBalance(context: Context, username: String?) {
+        val queue = Volley.newRequestQueue(context)
+        val request = JsonArrayRequest(Request.Method.GET, GlobalData.BASE_URL+"balance/getbalance.php?username=$username", null,
+        { response ->
+
+            val formatRp = NumberFormat.getCurrencyInstance(Locale("id","ID"))
+
+            for (i in 0 until response.length()){
+                val jsonObject = response.getJSONObject(i)
+                val balance = jsonObject.getInt("balance")
+
+                Balance.amount = balance
+
+                binding.currentBalance.text = formatRp.format(Balance.amount)
+            }
+        }, { error ->
+            Log.d("error get data balance ",error.toString())
+        })
+        queue.add(request)
     }
 
     private fun handlerData() {
@@ -122,6 +153,7 @@ class MovieFragment : Fragment(), ShowDataMovie {
     ){
         val intent = Intent(context, classes)
         intent.putExtra("username", username)
+        intent.putExtra("balance", Balance.amount)
         startActivity(intent)
     }
 
