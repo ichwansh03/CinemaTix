@@ -42,10 +42,6 @@ class OrderAdapter(var context: Context, var list: ArrayList<OrderItem>, var del
     override fun onBindViewHolder(holder: MyAdapterOrder, position: Int) {
         val order = list[position]
         holder.adapter(context, order.name, order.title, order.quantity)
-        holder.binding.cvFrameOrder.setOnClickListener {
-            val intent = Intent(context, DetailOrderActivity::class.java)
-            context.startActivity(intent)
-        }
 
         holder.binding.btnCancelOrder.setOnClickListener {
             val alertDialog = AlertDialog.Builder(context)
@@ -57,6 +53,11 @@ class OrderAdapter(var context: Context, var list: ArrayList<OrderItem>, var del
                     deleteOrder.onDelete(position)
                 }
             }
+        }
+
+        holder.binding.cvFrameOrder.setOnClickListener {
+            val intent = Intent(context, DetailOrderActivity::class.java)
+            context.startActivity(intent)
         }
     }
 

@@ -51,8 +51,7 @@ class PaymentActivity : AppCompatActivity(), InsertData {
     override fun insert(context: Context, url: String) {
         val queue = Volley.newRequestQueue(context)
         val request = object : StringRequest(Method.POST, url, Response.Listener {
-            Toast.makeText(this, "Balance succesfully added", Toast.LENGTH_SHORT).show()
-            finish()
+            Toast.makeText(this, "Balance succesfully updated", Toast.LENGTH_SHORT).show()
         }, Response.ErrorListener {
                 error ->
             Log.d("error manage balance ",error.message.toString())

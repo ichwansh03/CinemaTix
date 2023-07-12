@@ -9,36 +9,35 @@ import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.ichwan.moviecompfest.databinding.ActivityDetailMovieBinding
 import com.ichwan.moviecompfest.model.MovieItem
-import com.ichwan.moviecompfest.service.GetDataUser
 import com.ichwan.moviecompfest.service.GlobalData
 import com.ichwan.moviecompfest.view.impl.CartActivity
 import java.text.NumberFormat
 import java.util.*
 
-class DetailMovieActivity : AppCompatActivity(), GetDataUser {
+class DetailMovieActivity : AppCompatActivity() {
 
     private lateinit var item: MovieItem
     private lateinit var binding: ActivityDetailMovieBinding
-    private val getDataUser: GetDataUser = object : GetDataUser{}
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailMovieBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val activity = MainActivity()
-        activity.getData()
-
-        val age = MainActivity.User.age
-
         showMovieData()
+
+        val name = MainActivity.User.name
+        val username = MainActivity.User.username
+        val age = MainActivity.User.age
 
         binding.btnOrder.setOnClickListener {
 
             if (age.toString().toInt() < item.ageRating) {
-                Toast.makeText(this, "Your old isn't enough!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Your old isn't enough! $age", Toast.LENGTH_SHORT).show()
             } else {
-                startActivity(Intent(this, CartActivity::class.java))
+                val intent = Intent(this, CartActivity::class.java)
+                intent.putExtra("username", username)
+                intent.putExtra("name", name)
+                startActivity(intent)
             }
         }
     }

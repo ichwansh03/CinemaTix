@@ -39,6 +39,7 @@ class CartActivity : AppCompatActivity(), InsertData {
         setContentView(binding.root)
 
         name = intent.getStringExtra("name")
+        binding.nameOrder.text = name
 
         showDataOrder()
 
@@ -70,11 +71,8 @@ class CartActivity : AppCompatActivity(), InsertData {
         }
 
         binding.btnOrder.setOnClickListener {
-            //insert data order
-            insert(this, GlobalData.BASE_URL +"order/addorder.php")
-            //insert number seat order
             if (checkSeatsInput()){
-                insertSeatOrder()
+                insert(this, GlobalData.BASE_URL +"order/addorder.php")
             }
         }
     }
@@ -108,26 +106,6 @@ class CartActivity : AppCompatActivity(), InsertData {
 
         return result
     }
-
-    private fun insertSeatOrder() {
-        val queue = Volley.newRequestQueue(this)
-        val request = object : StringRequest(Method.POST, GlobalData.BASE_URL+"ticket/addticket.php", Response.Listener {
-            startActivity(Intent(this, PaymentActivity::class.java))
-        },
-            Response.ErrorListener { error ->
-                Log.d("error insert cart ", error.message.toString())
-            }) {
-            override fun getParams(): MutableMap<String, String> {
-                val params = HashMap<String, String>()
-                params["name"] = name.toString()
-                params["title"] = binding.titleMovieOrder.text.toString()
-                params["seat"] = seatList!!.joinToString { "," }
-                return params
-            }
-        }
-        queue.add(request)
-    }
-
     private fun removeInputTicketView() {
         val inputTicketView = LayoutInflater.from(this).inflate(R.layout.item_add_seats, null, false)
 
@@ -135,7 +113,6 @@ class CartActivity : AppCompatActivity(), InsertData {
     }
 
     private fun addInputTicketView() {
-
         val inputTicketView = LayoutInflater.from(this).inflate(R.layout.item_add_seats, null, false)
 
         binding.layoutList.addView(inputTicketView)
@@ -170,6 +147,7 @@ class CartActivity : AppCompatActivity(), InsertData {
                 params["price"] = GlobalData.priceMovie.toString()
                 params["quantity"] = quantities.toString()
                 params["total"] = total.toString()
+                params["seat"] = seatList!!.joinToString { "," }
                 return params
             }
         }

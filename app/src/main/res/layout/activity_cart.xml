@@ -160,6 +160,13 @@
         android:layout_marginStart="16dp"
         android:layout_below="@id/tx_book" />
 
+    <LinearLayout
+        android:id="@+id/layout_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/tx_seats"/>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/btn_order"
         android:layout_width="match_parent"
