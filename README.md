@@ -10,7 +10,7 @@ Cinema App is a a mobile-based application for ordering movie tickets with the a
   ```
   git clone https://github.com/ichwansh03/MovieCompfest-Backend.git
   ```
-* after clone back-end project, you must be import sql script from back-end project with `SQLyog` or whatever.
+* after clone back-end project, you must be import `dbcinema.sql` script from back-end project with `SQLyog` or whatever.
 * if you use localhost, save project in `htdocs` file inside `xampp` folder.
 * before your build or run this project, please change IP to access localhost in ![BASE_URL](https://github.com/ichwansh03/MovieCompfest/blob/master/app/src/main/java/com/ichwan/moviecompfest/service/GlobalData.kt). Change `BASE_URL` value to `http://<your IP local>/cinema`.
 * and then, run or build your project.
