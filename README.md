@@ -6,7 +6,7 @@ Cinema App is a a mobile-based application for ordering movie tickets with the a
   git clone https://github.com/ichwansh03/MovieCompfest.git
   ```
 * open clone result in `Android Studio`.
-* because this project is open-based API, download or clone back-end code from here:
+* because this project is open-based API, ![download](https://github.com/ichwansh03/MovieCompfest-Backend) or clone code from here:
   ```
   git clone https://github.com/ichwansh03/MovieCompfest-Backend.git
   ```
