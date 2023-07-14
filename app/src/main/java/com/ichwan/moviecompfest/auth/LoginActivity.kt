@@ -22,8 +22,8 @@ class LoginActivity : AppCompatActivity(), LoginRepository {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.txRegister.setOnClickListener {
-            startActivity(Intent(this, RegisterActivity::class.java))
+        binding.forgotPassword.setOnClickListener {
+            startActivity(Intent(this, ForgotPasswordActivity::class.java))
         }
 
         binding.btnLogin.setOnClickListener {
@@ -32,11 +32,15 @@ class LoginActivity : AppCompatActivity(), LoginRepository {
                 password = binding.etPasswordLogin.text.toString()
             )
         }
+
+        binding.txRegister.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
+        }
     }
 
     override fun login(username: String, password: String) {
         val queue: RequestQueue = Volley.newRequestQueue(applicationContext)
-        val request = StringRequest(Request.Method.GET, GlobalData.BASE_URL+"login.php?username="+username+"&password="+password,
+        val request = StringRequest(Request.Method.GET, GlobalData.BASE_URL+"auth/login.php?username="+username+"&password="+password,
             { response ->
                 if (response.equals("0")) {
                     val intent = Intent(this, MainActivity::class.java)

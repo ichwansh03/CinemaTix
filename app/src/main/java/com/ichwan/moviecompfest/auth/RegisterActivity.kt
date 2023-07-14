@@ -11,9 +11,9 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.ichwan.moviecompfest.databinding.ActivityRegisterBinding
 import com.ichwan.moviecompfest.service.GlobalData
-import com.ichwan.moviecompfest.service.InsertData
+import com.ichwan.moviecompfest.service.InsertDataOrder
 
-class RegisterActivity : AppCompatActivity(), InsertData {
+class RegisterActivity : AppCompatActivity(), InsertDataOrder {
 
     private lateinit var binding: ActivityRegisterBinding
 
@@ -25,18 +25,22 @@ class RegisterActivity : AppCompatActivity(), InsertData {
         binding.txLogin.setOnClickListener { finish() }
 
         binding.btnRegister.setOnClickListener {
-            if (binding.etName.text.toString().isEmpty() && binding.etAge.text.toString()
-                    .isEmpty() && binding.etUsername.text.toString()
-                    .isEmpty() && binding.etPassword.text.toString().isEmpty()
-            ) {
-                Toast.makeText(
-                    applicationContext,
-                    "You must have complete all data",
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
-                insert(this, GlobalData.BASE_URL + "register.php")
-            }
+            checkEmptyData()
+        }
+    }
+
+    private fun checkEmptyData() {
+        if (binding.etName.text.toString().isEmpty() && binding.etAge.text.toString()
+                .isEmpty() && binding.etUsername.text.toString()
+                .isEmpty() && binding.etPassword.text.toString().isEmpty()
+        ) {
+            Toast.makeText(
+                applicationContext,
+                "You must have complete all data",
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            insert(this, GlobalData.BASE_URL + "auth/register.php")
         }
     }
 

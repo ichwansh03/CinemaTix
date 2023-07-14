@@ -17,7 +17,7 @@
             android:name=".view.DetailOrderActivity"
             android:exported="false" />
         <activity
-            android:name=".view.ForgotPasswordActivity"
+            android:name=".auth.ForgotPasswordActivity"
             android:exported="false" />
         <activity
             android:name=".view.impl.AddBalanceActivity"
