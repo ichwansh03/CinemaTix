@@ -24,5 +24,5 @@
         android:id="@+id/rv_seats"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/item_seats_number"/>
+        tools:listitem="@layout/item_ticket"/>
 </LinearLayout>

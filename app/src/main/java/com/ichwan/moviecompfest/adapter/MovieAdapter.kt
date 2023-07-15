@@ -19,7 +19,7 @@ import kotlin.collections.ArrayList
 
 class MovieAdapter(var context: Context, var list: ArrayList<MovieItem>) : RecyclerView.Adapter<MovieAdapter.MyAdapterMovie>() {
 
-    class MyAdapterMovie(val binding: ItemMoviesBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MyAdapterMovie(val binding: ItemMoviesBinding) : RecyclerView.ViewHolder(binding.root) {
 
         private val formatRp = NumberFormat.getCurrencyInstance(Locale("id","ID"))
 

@@ -10,12 +10,13 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.ichwan.moviecompfest.databinding.ActivityPaymentBinding
 import com.ichwan.moviecompfest.service.GlobalData
-import com.ichwan.moviecompfest.service.InsertData
+import com.ichwan.moviecompfest.service.InsertDataOrder
+import com.ichwan.moviecompfest.view.impl.CartActivity
 import com.ichwan.moviecompfest.view.impl.MovieFragment
 import java.text.NumberFormat
 import java.util.*
 
-class PaymentActivity : AppCompatActivity(), InsertData {
+class PaymentActivity : AppCompatActivity(), InsertDataOrder {
 
     private lateinit var binding: ActivityPaymentBinding
     private var username: String? = null
@@ -33,12 +34,20 @@ class PaymentActivity : AppCompatActivity(), InsertData {
         binding.totalPayment.text = formatRp.format(GlobalData.totalPayment)
         binding.currentBalance.text = formatRp.format(MovieFragment.Balance.amount)
 
+        val cart = CartActivity()
+
         binding.btnPayCash.setOnClickListener {
-            checkPayment()
+            if (binding.inputAmount.text.isEmpty()){
+                Toast.makeText(this, "Fill amount of payment", Toast.LENGTH_SHORT).show()
+            } else {
+                updateBalance()
+                cart.insert(this, GlobalData.BASE_URL+"order/addorder.php")
+                cart.insertTicketOrder(this, GlobalData.BASE_URL+"ticket/addticket.php")
+            }
         }
     }
 
-    private fun checkPayment() {
+    private fun updateBalance() {
         if (binding.inputAmount.text.toString().toInt() < GlobalData.totalPayment){
             Toast.makeText(this, "Your cash is less than total payment", Toast.LENGTH_SHORT).show()
         } else {

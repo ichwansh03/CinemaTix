@@ -11,12 +11,12 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.ichwan.moviecompfest.databinding.ActivityAddBalanceBinding
 import com.ichwan.moviecompfest.service.GlobalData
-import com.ichwan.moviecompfest.service.InsertData
+import com.ichwan.moviecompfest.service.InsertDataOrder
 import java.text.NumberFormat
 import java.util.*
 import kotlin.collections.HashMap
 
-class AddBalanceActivity : AppCompatActivity(), InsertData {
+class AddBalanceActivity : AppCompatActivity(), InsertDataOrder {
 
     private lateinit var binding: ActivityAddBalanceBinding
     private var username: String? = null
