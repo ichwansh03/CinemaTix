@@ -43,7 +43,7 @@ class CartActivity : AppCompatActivity(), InsertDataOrder {
         binding = ActivityCartBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        init()
+        initData(binding)
 
         showDataOrder()
 
@@ -51,7 +51,7 @@ class CartActivity : AppCompatActivity(), InsertDataOrder {
             quantities++
             amountOrder.text = quantities.toString()
 
-            addInputTicketView()
+            addInputTicketView(this)
 
             if (quantities >= 6){
                 binding.btnAdd.isEnabled = false
@@ -64,7 +64,7 @@ class CartActivity : AppCompatActivity(), InsertDataOrder {
 
         binding.btnMin.setOnClickListener {
 
-            removeInputTicketView()
+            removeInputTicketView(this)
 
             if (quantities > 0){
                 quantities--
@@ -79,7 +79,7 @@ class CartActivity : AppCompatActivity(), InsertDataOrder {
         }
     }
 
-    private fun init(){
+    private fun initData(binding: ActivityCartBinding){
         val name = intent.getStringExtra("name")
         nameOrder = binding.nameOrder
         nameOrder.text = name.toString()
@@ -124,14 +124,18 @@ class CartActivity : AppCompatActivity(), InsertDataOrder {
         }
     }
 
-    private fun removeInputTicketView() {
-        val inputTicketView = LayoutInflater.from(this).inflate(R.layout.item_add_seats, null, false)
+    private fun removeInputTicketView(context: Context) {
+        val inputTicketView = LayoutInflater
+            .from(context)
+            .inflate(R.layout.item_add_seats, null, false)
 
         addFieldSeat.removeView(inputTicketView)
     }
 
-    private fun addInputTicketView() {
-        val inputTicketView = LayoutInflater.from(this).inflate(R.layout.item_add_seats, null, false)
+    private fun addInputTicketView(context: Context) {
+        val inputTicketView = LayoutInflater
+            .from(context)
+            .inflate(R.layout.item_add_seats, null, false)
 
         addFieldSeat.addView(inputTicketView)
     }

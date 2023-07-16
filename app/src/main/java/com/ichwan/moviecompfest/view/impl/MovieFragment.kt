@@ -55,9 +55,9 @@ class MovieFragment : Fragment(), ShowDataMovie {
             shareUsername(requireContext(), AddBalanceActivity::class.java, username)
         }
 
-        searchBar()
+        searchBar(binding)
 
-        handlerData()
+        handlerData(binding)
 
         return view
     }
@@ -83,7 +83,7 @@ class MovieFragment : Fragment(), ShowDataMovie {
         queue.add(request)
     }
 
-    private fun handlerData() {
+    private fun handlerData(binding: FragmentMovieBinding) {
         val handler = Handler(Looper.getMainLooper())
         handler.postDelayed({
             handler.post {
@@ -93,7 +93,7 @@ class MovieFragment : Fragment(), ShowDataMovie {
         },5000)
     }
 
-    private fun searchBar() {
+    private fun searchBar(binding: FragmentMovieBinding) {
         binding.searchBar.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 

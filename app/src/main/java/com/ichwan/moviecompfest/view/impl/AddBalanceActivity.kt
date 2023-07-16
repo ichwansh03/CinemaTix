@@ -23,7 +23,6 @@ class AddBalanceActivity : AppCompatActivity(), InsertDataOrder {
     private var balance: Int? = 0
     private val formatRp = NumberFormat.getCurrencyInstance(Locale("id","ID"))
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddBalanceBinding.inflate(layoutInflater)
@@ -32,6 +31,15 @@ class AddBalanceActivity : AppCompatActivity(), InsertDataOrder {
         username = intent.getStringExtra("username")
         balance = intent.getIntExtra("balance",0)
 
+        chooseWithdrawal(binding)
+
+        binding.btnWithdraw.setOnClickListener {
+            insert(this, GlobalData.BASE_URL +"balance/withdraw.php")
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun chooseWithdrawal(binding: ActivityAddBalanceBinding) {
         binding.currentBalance.text = formatRp.format(balance)
 
         binding.wd50.setOnClickListener { binding.etBalance.setText("50000") }
@@ -39,9 +47,6 @@ class AddBalanceActivity : AppCompatActivity(), InsertDataOrder {
         binding.wd250.setOnClickListener { binding.etBalance.setText("250000") }
         binding.wd500.setOnClickListener { binding.etBalance.setText("500000") }
 
-        binding.btnWithdraw.setOnClickListener {
-            insert(this, GlobalData.BASE_URL +"balance/withdraw.php")
-        }
     }
 
     override fun insert(context: Context, url: String) {

@@ -43,6 +43,28 @@ class OrderFragment : Fragment(), ShowDataMovie {
 
         username = requireActivity().intent.getStringExtra("username")
 
+        searchBarOrder(binding)
+
+        handlerOrder(binding, username.toString())
+
+        return view
+    }
+
+    private fun handlerOrder(binding: FragmentOrderBinding, username: String) {
+        val handler = Handler(Looper.getMainLooper())
+        handler.postDelayed({
+            handler.post {
+                getData(
+                    requireContext(),
+                    username,
+                    GlobalData.BASE_URL+"order/getorder.php?username=$username"
+                )
+                binding.pbOrder.visibility = View.GONE
+            }
+        }, 5000)
+    }
+
+    private fun searchBarOrder(binding: FragmentOrderBinding) {
         binding.searchBarOrder.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
@@ -56,16 +78,6 @@ class OrderFragment : Fragment(), ShowDataMovie {
 
             }
         })
-
-        val handler = Handler(Looper.getMainLooper())
-        handler.postDelayed({
-            handler.post {
-                getData(requireContext(), username.toString(), GlobalData.BASE_URL+"order/getorder.php?username=$username")
-                binding.pbOrder.visibility = View.GONE
-            }
-        }, 5000)
-
-        return view
     }
 
     private fun searchOrder(words: String) {
