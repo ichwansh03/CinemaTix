@@ -1,6 +1,6 @@
 # Cinema App
 
-Cinema App is a a mobile-based application for ordering movie tickets with the application of an API and SQL database with various features, one of which is ordering seats for the reservation. You can get this source code free with follow this step:
+Cinema App is a mobile-based application for ordering movie tickets with the application of an API and SQL database with various features, one of which is ordering seats for the reservation. You can get this source code free with follow this step:
 * clone this repository:
   ```
   git clone https://github.com/ichwansh03/MovieCompfest.git
